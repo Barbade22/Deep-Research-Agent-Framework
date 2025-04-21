@@ -1,129 +1,112 @@
-```markdown
-# Organizational Research Scraper
 
-[![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Deep Research Agent Framework
+============================
 
-AI powerful web scraping and data extraction tool designed to gather comprehensive information about organizations using search engines, language models, and data refinement techniques.
+A modular, multi-agent research pipeline built for structured, factual, and scalable intelligence.
 
-## Features
-- Automated multi-source data collection
-- AI-powered data validation and refinement
-- Customizable research parameters
-- Structured JSON output
-- Error handling and progress tracking
+Built solo in 15 days to mimic human-level research, this system combines local LLMs, intelligent validation, and hallucination-resistant architecture to deliver high-quality answers from noisy, unstructured data on the web.
 
-## Overview
+What It Does
+------------
 
-This project automates the research process by:
-- Taking organization names as input
-- Generating specific questions about each organization
-- Searching the web for relevant information
-- Processing and validating search results
-- Extracting structured data
-- Storing results in JSON format
+This framework automates deep, factual research across domains like:
 
-## Use Cases
+- Academic & Scientific Literature
+- Legal Document Analysis
+- Pharmaceutical & Clinical Research
+- Policy & Regulatory Intelligence
+- Organizational / Competitive Research
+- Technical Documentation Mining
 
-This tool can be adapted for various applications:
+Highlights
+----------
 
-1. **Competitive Analysis**: Research competitors to understand their structure, offerings, and market positioning
-2. **Investment Research**: Gather information about potential investment targets
-3. **Recruitment Intelligence**: Research potential employers or partners
-4. **Market Research**: Collect data about organizations in specific industries
-5. **Academic Research**: Gather structured data about organizations for academic studies
-6. **Due Diligence**: Perform preliminary research for mergers and acquisitions
-7. **Sales Prospecting**: Research potential clients before outreach
+- Search + Structure: Scrapes the web for answers, outputs clean JSON
+- Multi-Agent Design: Workers, Validator, Supervisor, all modular
+- Refinery Stack: ReFT + Fo improve reasoning and readability
+- Small LLM Optimized: Built to run fast on models like:
+  - LLaMA 3.2 3B
+  - Gemma 2B
+  - Phi 2
+- Hallucination Resistant: Validates via external sources, avoids long-context traps
+- Research-Ready Output: Structured, fact-checked JSONs — ready for RAG, dashboards, or further modeling
 
-## Potential Modifications
+Architecture Overview
+---------------------
 
-The framework can be easily modified for different use cases:
+Input Queries or Entity List -> Question Generator -> Search via Tavily API
+-> Parallel Workers (LLM-powered) -> Supervisor: Structure + Merge
+-> Validator: Fact-check + Improve -> ReFT + Fo Refinery -> Final Model Enhancement
+-> Clean JSON Output
 
-### For Academic Research
-- Modify `questions.py` to focus on academic publications, research grants, and faculty information
-- Add citation tracking and academic metrics collection
+File & Module Guide
+-------------------
 
-### For Market Analysis
-- Update the schema in `generate_json_schema()` to include market share, growth metrics, and competitor analysis
-- Add industry-specific question sets
+main.py           - Pipeline controller
+questions.py      - Custom questions per domain or entity
+searchengine.py   - Search wrapper (Tavily API or swap your own)
+worker.py         - Per-question LLM extractors
+supervisor.py     - Merges answers into structured format
+validator.py      - Checks for factual consistency and hallucinations
+refinery.py       - Runs ReFT and Fo to refine outputs
+llm.py            - Connects to Ollama for local model inference
 
-### For Job Market Research
-- Modify questions to focus on hiring trends, salary information, and employee reviews
-- Integrate with job posting APIs
+How to Run It
+-------------
 
-### For Product Research
-- Adapt the system to gather information about products instead of organizations
-- Modify the schema to include product specifications, pricing, and reviews
+1. Install Dependencies
+   pip install requests tavily-python python-dotenv
 
-## Installation
+2. Setup .env
+   TAVILY_API_KEY=your_tavily_key
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/organizational-research-scraper.git
-cd organizational-research-scraper
- ```
-```
+3. Add Your Entities or Topics
+   Example: input.txt with list of companies, case laws, drug names, etc.
 
-2. Install dependencies:
-```bash
-pip install requests tavily-python python-dotenv
- ```
-```
+4. Run the Agent
+   python main.py
 
-3. Configuration:
-- Get a Tavily API key from Tavily
-- Create a .env file and add your API key:
-```bash
-TAVILY_API_KEY=your_api_key_here
- ```
+5. Output
+   research_output.json with refined, validated answers for each input entity
 
-## Usage
-1. Create a text file named org.txt with a list of organizations to research:
-```plaintext
-Apex Global Solutions
-Horizon Business Alliance
-Nexus Technology Partners
- ```
+Customization Ideas
+-------------------
 
-2. Run the main script:
-```bash
-python main.py
- ```
+Use Case         - Modify...         - Example Questions
+Legal Research   - questions.py      - "What legal precedents are relevant?"
+Pharma           - validator.py      - "What are clinical trial phases?"
+Tech Docs        - searchengine.py   - "What features does version X include?"
+Academic Papers  - refinery.py       - "What is the paper's contribution?"
 
-3. Results will be saved to Org_research.json
-## Project Structure File Description main.py
+Why This Matters
+----------------
 
-Main orchestration script llm.py
+The real power is in the validator + refinery stack:
 
-Handles language model interactions searchengine.py
+- Hallucination Resistance: Small LLMs can reason, but often lack context. This system gives them a second pass for truth.
+- Structured Thinking: Like a research analyst, it doesn't just answer — it cross-verifies, formats, and prioritizes.
+- Fast & Local: No OpenAI or Anthropic required. Run on a laptop, scale with a cluster.
 
-Manages web search functionality questions.py
+Built With
+----------
 
-Defines research questions refinery.py
+- Tavily API
+- Ollama for local inference
+- Custom prompt engineering
+- JSON-first pipeline design
+- 15 days of pure caffeine and human tenacity
 
-Data refinement and formatting validator.py
+License
+-------
 
-Information validation system worker.py
+MIT — use it, fork it, break it, improve it.
 
-Data extraction workers supervoiser.py
+When You're Ready to Launch
+---------------------------
 
-Extraction process supervision
-## Configuration
-Edit these files for customization:
+Whether you're:
+- Publishing a paper
+- Productizing it
+- Scaling to a team or org
 
-- questions.py : Modify research questions and fields
-- refinery.py : Adjust data formatting rules
-- searchengine.py : Configure search parameters
-## Dependencies
-- Python 3.6+
-- Requests - HTTP library
-- Tavily - Search API
-- Ollama - Local LLM server
-- python-dotenv - Environment management
-## License
-Distributed under the MIT License. See LICENSE for more information.
-
-## Acknowledgments
-- Tavily for their powerful search API
-- Ollama for local LLM capabilities
-- Python community for excellent tooling
+Let’s plug it in and take it further. Everything’s modular and ready to scale.
