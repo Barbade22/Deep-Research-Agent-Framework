@@ -45,12 +45,19 @@ File & Module Guide
 -------------------
 
 main.py           - Pipeline controller
+
 questions.py      - Custom questions per domain or entity
+
 searchengine.py   - Search wrapper (Tavily API or swap your own)
+
 worker.py         - Per-question LLM extractors
+
 supervisor.py     - Merges answers into structured format
+
 validator.py      - Checks for factual consistency and hallucinations
+
 refinery.py       - Runs ReFT and Fo to refine outputs
+
 llm.py            - Connects to Ollama for local model inference
 
 How to Run It
