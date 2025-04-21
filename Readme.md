@@ -71,15 +71,6 @@ How to Run It
 5. Output
    research_output.json with refined, validated answers for each input entity
 
-Customization Ideas
--------------------
-
-Use Case         - Modify...         - Example Questions
-Legal Research   - questions.py      - "What legal precedents are relevant?"
-Pharma           - validator.py      - "What are clinical trial phases?"
-Tech Docs        - searchengine.py   - "What features does version X include?"
-Academic Papers  - refinery.py       - "What is the paper's contribution?"
-
 Why This Matters
 ----------------
 
@@ -96,7 +87,6 @@ Built With
 - Ollama for local inference
 - Custom prompt engineering
 - JSON-first pipeline design
-- 15 days of pure caffeine and human tenacity
 
 License
 -------
