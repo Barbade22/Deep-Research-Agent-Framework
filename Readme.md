@@ -4,7 +4,7 @@ Deep Research Agent Framework
 
 A modular, multi-agent research pipeline built for structured, factual, and scalable intelligence.
 
-Built solo in 15 days to mimic human-level research, this system combines local LLMs, intelligent validation, and hallucination-resistant architecture to deliver high-quality answers from noisy, unstructured data on the web.
+Built to mimic human-level research, this system combines local LLMs, intelligent validation, and hallucination-resistant architecture to deliver high-quality answers from noisy, unstructured data on the web.
 
 What It Does
 ------------
@@ -38,6 +38,8 @@ Input Queries or Entity List -> Question Generator -> Search via Tavily API
 -> Parallel Workers (LLM-powered) -> Supervisor: Structure + Merge
 -> Validator: Fact-check + Improve -> ReFT + Fo Refinery -> Final Model Enhancement
 -> Clean JSON Output
+
+![Architecture Diagram](Architecture.png)
 
 File & Module Guide
 -------------------
